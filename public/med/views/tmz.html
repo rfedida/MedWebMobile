@@ -1,0 +1,163 @@
+<div>
+    <a href="#medSchema">מעבר ל2</a>    
+</div>
+ <div ng-controller="WoundedListController" data-spy="scroll">
+        <!-- Page Content -->
+        <div class="container">
+
+            <!-- Page Heading -->
+            <div class="row header">
+                
+                <div class="col-md-3" style="padding-top:30px" >
+                    <input type="text" class="form-control" placeholder="הקלד טקסט לחיפוש" ng-model="filterText">
+                </div>
+
+                <div class="col-md-9">
+                    <h1 class="">תמ"צ נפגעים
+                        <small>{{currentStationName}}</small>
+                    </h1>
+                </div>
+                
+            </div>
+
+            <div class="h-divider">
+
+            <!-- woundeds Row -->
+            <center>
+                <div data-spy="scroll" class="row bodyhigh" style="padding-top:10px">
+                    <div class="col-md-3 border-right">
+                    <div>
+
+                        <div class="menuStrip row">    
+                            <div class="col-md-4 col-xs-offset-3">
+                                <label class="lableFix" >לא סווג</label>
+                            </div>
+                            <div class="col-md-1 ">
+                                <div class="colorMenu" style="background-color:#FFF59D"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-xs-5 col-xs-offset-1 portfolio-item fade bodyText" 
+                                    ng-repeat="wounded in woundeds | filter: {status:'0'} | filter:filterText
+                                    | orderBy: ['-receptionTime']"
+                                ng-style="{'background-color':'#FFF59D' }"
+                                  ng-click="moveToSchema(wounded.braceletId)">
+                            <br>
+                            <p> <strong>מס' צמיד:</strong> {{wounded.braceletId}}</p>
+                            <p> <strong>דופק:</strong> {{wounded.heartbeat}}</p>
+                            <p> <strong>ל"ד:</strong> {{wounded.bloodPressure}}</p>
+                            <p> <strong>סטורציה:</strong> {{wounded.storation}}%</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-3 border-right">
+                    <div>
+                        <div class="menuStrip row">  
+
+                            <div class="col-md-4 col-md-offset-1">
+                                <label class="lableFix">לא דחוף</label>
+                            </div>
+                            <div class="col-md-1 ">
+                                <div class="colorMenu" style="background-color: #A5D6A7"></div>
+                            </div>
+
+                            <div class="col-md-3 ">
+                                <label class="lableFix">דחוף</label>
+                            </div>
+                            <div class="col-md-1 ">
+                                <div class="colorMenu" style="background-color: #FF8A80"></div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="col-md-5 col-xs-5 col-xs-offset-1 portfolio-item fade bodyText" 
+                            ng-repeat="wounded in woundeds | filter:myFilter | filter:filterText 
+                            | orderBy: ['-status','-receptionTime']"
+                                ng-style="{'background-color':wounded.status == '2' ?  '#FF8A80': 
+                                        (wounded.status == '1' ?  '#A5D6A7': white) }" 
+                              ng-click="moveToSchema(wounded.braceletId)">
+                            <br>
+                            <p> <strong>מס' צמיד:</strong> {{wounded.braceletId}}</p>
+                            <p> <strong>דופק:</strong> {{wounded.heartbeat}}</p>
+                            <p> <strong>ל"ד:</strong> {{wounded.bloodPressure}}</p>
+                            <p> <strong>סטורציה:</strong> {{wounded.storation}}%</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-3 border-right">
+                    <div>
+                         <div class="menuStrip row">    
+                            <div class="col-md-4 col-xs-offset-3">
+                                <label class="lableFix" >במעבר</label>
+                            </div>
+                            <div class="col-md-1 ">
+                                <div class="colorMenu" style="background-color:#BBDEFB"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-xs-5 col-xs-offset-1 portfolio-item fade bodyText" 
+                            ng-repeat="wounded in woundeds | filter: {status:'4'} | filter:filterText | 
+                            orderBy: ['-receptionTime']"
+                                ng-style="{'background-color':'#BBDEFB' }" 
+                              ng-click="moveToSchema(wounded.braceletId)">
+                            <br>
+                            <p> <strong>מס' צמיד:</strong> {{wounded.braceletId}}</p>
+                            <p> <strong>דופק:</strong> {{wounded.heartbeat}}</p>
+                            <p> <strong>ל"ד:</strong> {{wounded.bloodPressure}}</p>
+                            <p> <strong>סטורציה:</strong> {{wounded.storation}}%</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-3">
+                    <div>
+                        <div class="menuStrip row">    
+                            <div class="col-md-4 col-xs-offset-3">
+                                <label class="lableFix" >חלל</label>
+                            </div>
+                            <div class="col-md-1 ">
+                                <div class="colorMenu" style="background-color:#9E9E9E"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-5 col-xs-5 col-xs-offset-1 portfolio-item fade bodyText" 
+                            ng-repeat="wounded in woundeds | filter: {status:'3'} | filter:filterText | 
+                            orderBy: ['-receptionTime']"
+                                ng-style="{'background-color':'#9E9E9E' }" 
+                              ng-click="moveToSchema(wounded.braceletId)">
+                            <br><br><br>
+                            <p> <strong>מס' צמיד:</strong> {{wounded.braceletId}}</p>
+                            <!--<p> <strong>דופק:</strong> {{wounded.heartbeat}}</p>
+                            <p> <strong>ל"ד:</strong> {{wounded.bloodPressure}}</p>
+                            <p> <strong>סטורציה:</strong> {{wounded.storation}}</p>-->
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+            </center>
+
+            <footer>
+
+                        <div class="row">
+                            <!--<div class="col-md-4 col-md-offset-4">
+                                <img class="menuimg" src="\med\img\menu.jpg">
+                            </div>-->
+
+                            <div class="col-md-1 col-md-offset-11 fade">
+                                <button type="button" class="addImg" ng-click="showComplex()" >+</button>                 
+                            </div>
+                        </div>
+
+            </footer>
+    </div>
+            </div>
+        </div>
+ </div>
+ 
+    
+
