@@ -13,7 +13,7 @@
     "cookie-parser": "^1.4.3",
     "crypto": "0.0.3",
     "diskdb": "^0.1.15",
-    "express": "^4.14.1",
+    "express": "^4.14.0",
     "express-session": "^1.14.1",
     "mongoose": "^4.6.3",
     "node-session": "^1.2.1",
